@@ -1,0 +1,9 @@
+# Al final del archivo en crone añadir:
+
+0 20 * * 0 [ $(($(date +\%U) \% 2)) -eq 0 ] && /bin/bash $HOME/Escritorio/scripts/backup.sh >> $HOME/backup_log.txt 2>&1
+
+# 0 20 * * 0: ejecuta el script todos los domingos a las 20:00.
+# $(date +%U): obtiene el número de semana del año.
+# $(($(date +%U) % 2)) -eq 0: ejecuta solo si la semana es par (cada dos semanas).
+# &&: ejecuta el script solo si la condición anterior es verdadera.
+# >> $HOME/backup_log.txt 2>&1: guarda la salida y errores en un archivo de log.
